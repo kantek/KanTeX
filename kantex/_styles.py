@@ -19,42 +19,61 @@ class FormattedBase:
 
 
 class Bold(FormattedBase):
-    """A bold text."""
-
     def __init__(self, text: V) -> None:
+        """A bold text
+
+        Args:
+            text: Text
+        """
         self.text = f'**{text}**'
 
 
 class Italic(FormattedBase):
-    """A italic text."""
-
     def __init__(self, text: V) -> None:
+        """A italic text
+
+        Args:
+            text: Text
+        """
         self.text = f'__{text}__'
 
 
 class Strikethrough(FormattedBase):
     def __init__(self, text: V) -> None:
+        """A strikethrough text
+
+        Args:
+            text: Text
+        """
         self.text = f'~~{text}~~'
 
 
 class Code(FormattedBase):
-    """A Monospaced text."""
-
     def __init__(self, text: V) -> None:
+        """Text formatted as code (monospace)
+
+        Args:
+            text: Text
+        """
         self.text = f'`{text}`'
 
 
 class Pre(FormattedBase):
-    """A Multiline Monospaced text."""
-
     def __init__(self, text: V) -> None:
+        """A Multiline Monospaced text.
+
+        Args:
+            text: Text
+        """
         self.text = f'```{text}```'
 
 
 class Link(FormattedBase):
-    """A Hyperlink with a label."""
-
     def __init__(self, label: V, url: str) -> None:
+        """A Hyperlink with a label.
+
+        Args:
+            label: Label of the link
+            url: URL of the link
+        """
         self.text = f'[{label}]({url})'
-
-

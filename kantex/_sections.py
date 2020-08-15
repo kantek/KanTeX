@@ -8,9 +8,15 @@ V = TypeVar('V')
 
 
 class Section:
-    """A section header"""
-
     def __init__(self, *args: Union[V, 'SubSection'], indent: int = 4) -> None:
+        """A section which automatically indents its contents
+
+        The header is made bold automatically
+
+        Args:
+            *args: Initial items
+            indent: Ident to use
+        """
         self.header = Bold(args[0])
         self.items = [i for i in args[1:] if i]
         self.indent = indent
@@ -24,25 +30,43 @@ class Section:
                             if item is not None])
 
     def append(self, item: Union[V, FormattedBase, 'SubSection']) -> None:
-        """Append an item to the section"""
+        """Append a subsection or item to the section
+
+        Args:
+            item: The item to append
+        """
         self.items.append(item)
 
     def extend(self, items: Iterable) -> None:
-        """Extend the section with a list of items"""
+        """Extend the section with a list of items
+
+        Args:
+            items: List of items to extend the document with
+        """
         self.items.extend(items)
 
 
 class SubSection(Section):
-    """A subsection Header"""
-
     def __init__(self, *args: Union[V, 'SubSubSection'], indent: int = 8) -> None:
+        """A sub-section which automatically indents its contents
+
+        The header is made bold automatically
+
+        Args:
+            *args: Initial items
+            indent: Ident to use
+        """
         super().__init__(*args, indent=indent)
 
 
 class SubSubSection(SubSection):
-    """A subsubsection Header"""
-
     def __init__(self, *args: V, indent: int = 12) -> None:
+        """A sub-sub-section which automatically indents its contents
+
+        The header is made bold automatically
+
+        Args:
+            *args: Initial items
+            indent: Ident to use
+        """
         super().__init__(*args, indent=indent)
-
-
