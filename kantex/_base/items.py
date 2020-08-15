@@ -1,6 +1,6 @@
 from typing import Union, TypeVar, Tuple, Type
 
-from ._styles import Link, FormattedBase
+from .styles import Link, FormattedBase
 
 K = TypeVar('K')
 V = TypeVar('V')

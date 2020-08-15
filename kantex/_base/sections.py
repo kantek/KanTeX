@@ -1,13 +1,14 @@
 from typing import Union, Iterable, TypeVar
 
-from ._document import KanTeXDocument
-from ._styles import FormattedBase, Bold
+from .document import KanTeXDocument
 
 K = TypeVar('K')
 V = TypeVar('V')
 
 
 class Section:
+    _header_style: 'FormattedBase' = None
+
     def __init__(self, *args: Union[V, 'SubSection'], indent: int = 4) -> None:
         """A section which automatically indents its contents
 
@@ -17,11 +18,11 @@ class Section:
             *args: Initial items
             indent: Ident to use
         """
-        self.header = Bold(args[0])
+        self.header = self._header_style(args[0])
         self.items = [i for i in args[1:] if i]
         self.indent = indent
 
-    def __add__(self, other: Union[V, 'Section']) -> 'MDTeXDocument':
+    def __add__(self, other: Union[V, 'Section']) -> 'KanTeXDocument':
         return KanTeXDocument(self, *other)
 
     def __str__(self) -> str:
@@ -29,7 +30,7 @@ class Section:
                          + [' ' * self.indent + str(item) for item in self.items
                             if item is not None])
 
-    def append(self, item: Union[V, FormattedBase, 'SubSection']) -> None:
+    def append(self, item: Union[V, 'FormattedBase', 'SubSection']) -> None:
         """Append a subsection or item to the section
 
         Args:

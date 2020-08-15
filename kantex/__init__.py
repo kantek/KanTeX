@@ -1,4 +1,4 @@
-from ._document import KanTeXDocument
-from ._items import Mention, KeyValueItem, Item
-from ._sections import Section, SubSection, SubSubSection
-from ._styles import Bold, Italic, Strikethrough, Code, Pre, Link
+from .md import (KanTeXDocument,
+                 Section, SubSection, SubSubSection,
+                 Bold, Italic, Strikethrough, Code, Pre, Link,
+                 Mention, KeyValueItem, Item)
